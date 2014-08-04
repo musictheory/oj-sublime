@@ -1,0 +1,290 @@
+{
+    "name": "oj",
+    "scopeName": "source.js.oj",
+    "fileTypes": ["oj" ],
+    "uuid": "04EBE779-56D9-4C63-B39A-E60AAB6DD44E",
+
+    "repository": {
+        "pragma-mark": {
+            "name": "meta.section",
+            "match": "^\\s*(\\/\\/#\\s*(pragma\\s+mark)\\s+(.*))",
+            "captures": {
+                "1": { "name": "meta.preprocessor.oj" },
+                "2": { "name": "keyword.control.import.pragma.oj" },
+                "3": { "name": "meta.toc-list.pragma-mark.oj" }
+            }
+        },
+
+        "ivar": {
+            "match": "\\b(_.*?)\\b",
+            "captures": {
+                "1": { "name": "variable.language.ivar.oj" }
+            }
+        },
+
+        "block": {
+            "begin": "\\{",
+            "end": "\\}",
+            "name": "meta.block.oj",
+            "patterns": [
+                {
+                    "include": "#block_innards"
+                }
+            ]
+        },
+
+        "block_innards": {
+            "patterns": [
+                { "include": "#block"  },
+                { "include": "$base"   }
+            ]
+        },
+
+        "implementation_innards": {
+            "patterns": [
+                { "include": "#properties"         },
+                { "include": "#property_directive" },
+                { "include": "#special_variables"  },
+                { "include": "#method_with_body"   },
+                { "include": "$base"               }
+            ]
+        },
+
+        "properties": {
+            "patterns": [{
+                "name": "meta.property-with-attributes.oj",
+
+                "begin": "((@)property)\\s*(\\()",
+                "beginCaptures": {
+                    "1": { "name": "keyword.other.property.oj" },
+                    "2": { "name": "punctuation.definition.keyword.oj" },
+                    "3": { "name": "punctuation.section.scope.begin.oj" }
+                },
+
+                "end": "(\\))",
+                "endCaptures": {
+                    "1": { "name": "punctuation.section.scope.end.oj" }
+                },
+
+                "patterns": [{
+                    "match": "\\b(getter|setter|readonly|readwrite|assign|retain|copy|nonatomic|strong|weak)\\b",
+                    "name": "keyword.other.property.attribute"
+                }]
+            }, {
+                "name": "meta.property.oj",
+                "match": "((@)property)\\b",
+                "captures": {
+                    "1": { "name": "keyword.other.property.oj" },
+                    "2": { "name": "punctuation.definition.keyword.oj" }
+                }
+            }]
+        },
+
+        "property_directive": {
+            "name": "keyword.other.property.directive.oj",
+            "match": "(@)(dynamic|synthesize)\\b",
+            "captures": {
+                "1": { "name": "punctuation.definition.keyword.oj" }
+            }
+        },
+
+        "method_with_body": {
+            "name": "meta.function-with-body.oj",
+            "begin": "^(?=-|\\+)",
+            "end": "(?<=\\})|(?=#)",
+            "patterns": [
+                { "include": "#method_definition" },
+                { "include": "#block"  },
+                { "include": "$base"   }
+            ]
+        },
+
+        "method_definition": {
+            "name": "meta.function.oj",
+            "begin": "^(-|\\+)\\s*",
+            "end": "(?=\\{|#)|;",
+            "patterns": [{
+                "name": "meta.return-type.oj",
+
+                "begin": "(\\()",
+                "beginCaptures": {
+                    "1": { "name": "punctuation.definition.type.begin.oj" }
+                },
+
+                "end": "(\\))\\s*(\\w+\\b)",
+                "endCaptures": {
+                    "1": { "name": "punctuation.definition.type.end.oj" },
+                    "2": { "name": "entity.name.function.oj" }
+                },
+
+                "patterns": [{ "include": "$base" }]
+            }, {
+                "match": "\\b\\w+(?=:)",
+                "name": "entity.name.function.name-of-parameter.oj"
+            }, {
+                "name": "meta.argument-type.oj",
+
+                "begin": "((:))\\s*(\\()",
+                "beginCaptures": {
+                    "1": { "name": "entity.name.function.name-of-parameter.oj" },
+                    "2": { "name": "punctuation.separator.arguments.oj" },
+                    "3": { "name": "punctuation.definition.type.begin.oj" }
+                },
+
+                "end": "(\\))\\s*(\\w+\\b)?",
+                "endCaptures": {
+                    "1": { "name": "punctuation.definition.type.end.oj" },
+                    "2": { "name": "variable.parameter.function.oj" }
+                },
+
+                "patterns": [{ "include": "$base" }]
+            }, {
+                "include": "#comment"
+            }]
+        },
+
+        "bracketed_content": {
+            "name": "meta.bracketed.oj",
+
+            "begin": "\\[",
+            "beginCaptures": {
+                "0": { "name": "punctuation.section.scope.begin.oj" }
+            },
+
+            "end": "\\]",
+            "endCaptures": {
+                "0": { "name": "punctuation.section.scope.end.oj" }
+            },
+
+            "patterns": [{
+                "name": "meta.function-call.oj",
+
+                "begin": "(?=\\w)(?<=[\\w\\])\"] )(\\w+(?:(:)|(?=\\])))",
+                "beginCaptures": {
+                    "1": { "name": "support.function.any-method.oj" },
+                    "2": { "name": "punctuation.separator.arguments.oj" }
+                },
+
+                "end": "(?=\\])",
+
+                "patterns": [
+                    {
+                        "match": "\\b\\w+(:)",
+                        "name": "support.function.any-method.name-of-parameter.oj",
+                        "captures": {
+                            "1": { "name": "punctuation.separator.arguments.oj" }
+                        }
+                    },
+                    { "include": "#special_variables" },
+                    { "include": "$base"              }
+                ],
+            }, {
+                "include": "#special_variables"
+            }, {
+                "include": "$self"
+            }
+            ]
+        },
+
+        "special_variables": {
+            "patterns": [{
+                "match": "\\b(self)\\b",
+                "name": "variable.language.self.oj"
+            }, {
+                "match": "\\b(super)\\b",
+                "name": "variable.language.super.oj"
+            }]
+        },
+
+        "comment": {
+            "patterns": [{
+                "name": "comment.block.js",
+                "end": "\\*\/",
+                "begin": "\/\\*",
+                "captures": {
+                    "0": { "name": "punctuation.definition.comment.js" }
+                }
+            }, {
+                "name": "comment.line.double-slash.js",
+                "match": "(\/\/).*$\\n?",
+                "captures": {
+                    "1": {
+                        "name": "punctuation.definition.comment.js"
+                    }
+                }
+            }]
+        }
+    },
+
+    "patterns": [{
+        "name": "meta.implementation.oj",
+        "contentName": "meta.scope.implementation.oj",
+
+        "begin": "((@)(implementation))\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*(?::\\s*([A-Za-z][A-Za-z0-9]*))?",
+        "beginCaptures": {
+            "1": { "name": "storage.type.oj"     },
+            "4": { "name": "entity.name.type.oj" },
+            "2": { "name": "punctuation.definition.storage.type.oj" },
+            "5": { "name": "entity.other.inherited-class.oj"        }
+        },
+
+        "end": "((@)end)\\b",
+        "endCaptures": {
+            "1": { "name": "keyword.oj" }
+        },
+
+        "patterns": [{
+            "include": "#implementation_innards"
+        }],
+
+
+
+
+    }, {
+        "name": "storage.type.oj",
+        "match": "\\b(BOOL|SEL|id|Class|instancetype)\\b"
+    }, {
+        "name": "keyword.oj",
+        "match": "\\b(YES|NO|Nil|nil|self|super)\\b"
+    }, {
+        "name": "keyword.oj",
+        "match": "(@)(enum|const)\\b"
+    }, {
+        "name": "storage.type.oj",
+        "match": "(@)(class)\\b",
+        "captures": {
+            "1": { "name": "punctuation.definition.storage.type.oj" }
+        }
+    }, {
+        "name": "meta.selector.oj",
+        "contentName": "meta.selector.method-name.oj",
+
+        "begin": "((@)selector)\\s*(\\()",
+        "beginCaptures": {
+            "1": { "name": "storage.type.oj" },
+            "2": { "name": "punctuation.definition.storage.type.oj" },
+            "3": { "name": "punctuation.definition.storage.type.oj" }
+        },
+
+        "end": "(\\))",
+        "endCaptures": {
+            "1": { "name": "punctuation.definition.storage.type.oj" }
+        },
+
+        "patterns": [{
+            "match": "\\b(?:[a-zA-Z_:][\\w]*)+",
+            "name": "support.function.any-method.name-of-parameter.oj",
+            "captures": {
+                "1": { "name": "punctuation.separator.arguments.oj" }
+            }
+        }]
+    }, {
+        "include": "#pragma-mark"
+    }, {
+        "include": "#bracketed_content"
+    }, {
+        "include": "source.js"
+    }, {
+        "include": "#ivar"
+    }]
+}

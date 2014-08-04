@@ -6,68 +6,50 @@
 	<array>
 		<string>oj</string>
 	</array>
-	<key>foldingStartMarker</key>
-	<string>(?x)
-		 /\*\*(?!\*)
-		|^(?![^{]*?//|[^{]*?/\*(?!.*?\*/.*?\{)).*?\{\s*($|//|/\*(?!.*?\*/.*\S))
-		|^@(implementation)\b
-	</string>
-	<key>foldingStopMarker</key>
-	<string>(?&lt;!\*)\*\*/|^\s*\}|^@end\b</string>
-	<key>keyEquivalent</key>
-	<string>^~O</string>
 	<key>name</key>
 	<string>oj</string>
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>match</key>
-			<string>^\s*@(class)\b</string>
-			<key>name</key>
-			<string>keyword.control.forward.js.oj</string>
-		</dict>
-		<dict>
 			<key>begin</key>
-			<string>((@)(implementation))\s+([A-Za-z_][A-Za-z0-9_]*)\s*(?::\s*([A-Za-z_][A-Za-z0-9_]*)|\(\s*([A-Za-z_][A-Za-z0-9_]*)\s*\))?</string>
-			<key>captures</key>
+			<string>((@)(implementation))\s+([A-Za-z_][A-Za-z0-9_]*)\s*(?::\s*([A-Za-z][A-Za-z0-9]*))?</string>
+			<key>beginCaptures</key>
 			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>meta.implementation.declaration.js.oj</string>
-				</dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.js.oj</string>
+					<string>storage.type.oj</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.storage.type.js.oj</string>
+					<string>punctuation.definition.storage.type.oj</string>
 				</dict>
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.type.js.oj</string>
+					<string>entity.name.type.oj</string>
 				</dict>
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>entity.other.inherited-class.js.oj</string>
-				</dict>
-				<key>6</key>
-				<dict>
-					<key>name</key>
-					<string>entity.other.category.js.oj</string>
+					<string>entity.other.inherited-class.oj</string>
 				</dict>
 			</dict>
 			<key>contentName</key>
-			<string>meta.scope.implementation.js.oj</string>
+			<string>meta.scope.implementation.oj</string>
 			<key>end</key>
 			<string>((@)end)\b</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.oj</string>
+				</dict>
+			</dict>
 			<key>name</key>
-			<string>meta.implementation.js.oj</string>
+			<string>meta.implementation.oj</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -78,21 +60,35 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\bid\b(\s|\n)?</string>
+			<string>\b(BOOL|SEL|id|Class|instancetype)\b</string>
 			<key>name</key>
-			<string>storage.type.id.js.oj</string>
+			<string>storage.type.oj</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\W(BOOL|SEL|id|Class)\W</string>
+			<string>\b(YES|NO|Nil|nil|self|super)\b</string>
+			<key>name</key>
+			<string>keyword.oj</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(@)(enum|const)\b</string>
+			<key>name</key>
+			<string>keyword.oj</string>
+		</dict>
+		<dict>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.js.oj</string>
+					<string>punctuation.definition.storage.type.oj</string>
 				</dict>
 			</dict>
+			<key>match</key>
+			<string>(@)(class)\b</string>
+			<key>name</key>
+			<string>storage.type.oj</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -102,21 +98,21 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.js.oj</string>
+					<string>storage.type.oj</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.storage.type.js.oj</string>
+					<string>punctuation.definition.storage.type.oj</string>
 				</dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.storage.type.js.oj</string>
+					<string>punctuation.definition.storage.type.oj</string>
 				</dict>
 			</dict>
 			<key>contentName</key>
-			<string>meta.selector.method-name.js.oj</string>
+			<string>meta.selector.method-name.oj</string>
 			<key>end</key>
 			<string>(\))</string>
 			<key>endCaptures</key>
@@ -124,11 +120,11 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.storage.type.js.oj</string>
+					<string>punctuation.definition.storage.type.oj</string>
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>meta.selector.js.oj</string>
+			<string>meta.selector.oj</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -137,25 +133,15 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.separator.arguments.js.oj</string>
+							<string>punctuation.separator.arguments.oj</string>
 						</dict>
 					</dict>
 					<key>match</key>
 					<string>\b(?:[a-zA-Z_:][\w]*)+</string>
 					<key>name</key>
-					<string>entity.name.selector.name-of-parameter.js.oj</string>
+					<string>support.function.any-method.name-of-parameter.oj</string>
 				</dict>
 			</array>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b(YES|NO|Nil|nil|BOOL|SEL|id|Class)\b</string>
-			<key>name</key>
-			<string>keyword.js.oj</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#bracketed_content</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -163,15 +149,49 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#special_variables</string>
+			<string>#bracketed_content</string>
 		</dict>
 		<dict>
 			<key>include</key>
 			<string>source.js</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#ivar</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>block</key>
+		<dict>
+			<key>begin</key>
+			<string>\{</string>
+			<key>end</key>
+			<string>\}</string>
+			<key>name</key>
+			<string>meta.block.oj</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#block_innards</string>
+				</dict>
+			</array>
+		</dict>
+		<key>block_innards</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#block</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$base</string>
+				</dict>
+			</array>
+		</dict>
 		<key>bracketed_content</key>
 		<dict>
 			<key>begin</key>
@@ -181,7 +201,7 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.scope.begin.js.oj</string>
+					<string>punctuation.section.scope.begin.oj</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -191,28 +211,33 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.scope.end.js.oj</string>
+					<string>punctuation.section.scope.end.oj</string>
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>meta.bracketed.js.oj</string>
+			<string>meta.bracketed.oj</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?=\w)(?&lt;=[\w\])"] )([A-Za-z_][A-Za-z0-9_]*(?:(?=:)|(?=\])))</string>
+					<string>(?=\w)(?&lt;=[\w\])"] )(\w+(?:(:)|(?=\])))</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.function.js.oj</string>
+							<string>support.function.any-method.oj</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.arguments.oj</string>
 						</dict>
 					</dict>
 					<key>end</key>
 					<string>(?=\])</string>
 					<key>name</key>
-					<string>meta.function-call.js.oj</string>
+					<string>meta.function-call.oj</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -221,28 +246,17 @@
 								<key>1</key>
 								<dict>
 									<key>name</key>
-									<string>entity.name.function.name-of-parameter.js.oj</string>
-								</dict>
-								<key>2</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.separator.arguments.js.oj</string>
+									<string>punctuation.separator.arguments.oj</string>
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>\b([A-Za-z_][A-Za-z0-9_]*)(:)</string>
+							<string>\b\w+(:)</string>
+							<key>name</key>
+							<string>support.function.any-method.name-of-parameter.oj</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#bracketed_content</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#ivar-in-method</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>source.js</string>
+							<string>#special_variables</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -258,10 +272,6 @@
 					<key>include</key>
 					<string>$self</string>
 				</dict>
-				<dict>
-					<key>include</key>
-					<string>source.js</string>
-				</dict>
 			</array>
 		</dict>
 		<key>comment</key>
@@ -276,38 +286,27 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.comment.js.oj</string>
+							<string>punctuation.definition.comment.js</string>
 						</dict>
 					</dict>
 					<key>end</key>
 					<string>\*/</string>
 					<key>name</key>
-					<string>comment.block.js.oj</string>
+					<string>comment.block.js</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>//</string>
-					<key>beginCaptures</key>
+					<key>captures</key>
 					<dict>
-						<key>0</key>
+						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.comment.js.oj</string>
+							<string>punctuation.definition.comment.js</string>
 						</dict>
 					</dict>
-					<key>end</key>
-					<string>$\n?</string>
+					<key>match</key>
+					<string>(//).*$\n?</string>
 					<key>name</key>
-					<string>comment.line.double-slash.js.oj</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>match</key>
-							<string>(?&gt;\\\s*\n)</string>
-							<key>name</key>
-							<string>punctuation.separator.continuation.js.oj</string>
-						</dict>
-					</array>
+					<string>comment.line.double-slash.js</string>
 				</dict>
 			</array>
 		</dict>
@@ -317,25 +316,19 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#method_super</string>
+					<string>#properties</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#instance_variables</string>
+					<string>#property_directive</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>$base</string>
+					<string>#special_variables</string>
 				</dict>
-			</array>
-		</dict>
-		<key>interface_innards</key>
-		<dict>
-			<key>patterns</key>
-			<array>
 				<dict>
 					<key>include</key>
-					<string>#method</string>
+					<string>#method_with_body</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -343,49 +336,57 @@
 				</dict>
 			</array>
 		</dict>
-		<key>ivar-in-method</key>
+		<key>ivar</key>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.language.ivar.oj</string>
+				</dict>
+			</dict>
 			<key>match</key>
-            <string>[^"'0-9A-Za-z_](_.*?)\W</string>
-            <key>captures</key>
-            <dict>
-                <key>1</key>
-                <dict>
-                    <key>name</key>
-                    <string>variable.language.ivar</string>
-                </dict>
-            </dict>
+			<string>\b(_.*?)\b</string>
 		</dict>
-		<key>method</key>
+		<key>method_definition</key>
 		<dict>
 			<key>begin</key>
 			<string>^(-|\+)\s*</string>
 			<key>end</key>
 			<string>(?=\{|#)|;</string>
 			<key>name</key>
-			<string>meta.method.js.oj</string>
+			<string>meta.function.oj</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
 					<string>(\()</string>
-					<key>captures</key>
+					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.type.js.oj</string>
+							<string>punctuation.definition.type.begin.oj</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(\))\s*(\w+\b)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.type.end.oj</string>
 						</dict>
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.function.js.oj</string>
+							<string>entity.name.function.oj</string>
 						</dict>
 					</dict>
-					<key>end</key>
-					<string>(\))\s*([A-Za-z_][A-Za-z0-9_]*\b)</string>
-					<key>contentName</key>
-					<string>meta.return-type.js.oj</string>
+					<key>name</key>
+					<string>meta.return-type.oj</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -396,9 +397,9 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b[A-Za-z_][A-Za-z0-9_]*(?=:)</string>
+					<string>\b\w+(?=:)</string>
 					<key>name</key>
-					<string>entity.name.function.name-of-parameter.js.oj</string>
+					<string>entity.name.function.name-of-parameter.oj</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -408,36 +409,36 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.function.name-of-parameter.js.oj</string>
+							<string>entity.name.function.name-of-parameter.oj</string>
 						</dict>
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.separator.arguments.js.oj</string>
+							<string>punctuation.separator.arguments.oj</string>
 						</dict>
 						<key>3</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.type.js.oj</string>
+							<string>punctuation.definition.type.begin.oj</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(\))\s*([A-Za-z_][A-Za-z0-9_]*\b)?</string>
+					<string>(\))\s*(\w+\b)?</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.type.js.oj</string>
+							<string>punctuation.definition.type.end.oj</string>
 						</dict>
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>variable.parameter.method.js.oj</string>
+							<string>variable.parameter.function.oj</string>
 						</dict>
 					</dict>
 					<key>name</key>
-					<string>meta.argument-type.js.oj</string>
+					<string>meta.argument-type.oj</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -452,23 +453,23 @@
 				</dict>
 			</array>
 		</dict>
-		<key>method_super</key>
+		<key>method_with_body</key>
 		<dict>
 			<key>begin</key>
 			<string>^(?=-|\+)</string>
 			<key>end</key>
-			<string>(?&lt;=^\})|(?=#)|(?&lt;=^[\-+])</string>
+			<string>(?&lt;=\})|(?=#)</string>
 			<key>name</key>
-			<string>meta.method-with-body.js.oj</string>
+			<string>meta.function-with-body.oj</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#method</string>
+					<string>#method_definition</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#ivar-in-method</string>
+					<string>#block</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -483,23 +484,106 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>meta.preprocessor.js.oj</string>
+					<string>meta.preprocessor.oj</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>keyword.control.preprocessor.pragma.js.oj</string>
+					<string>keyword.control.import.pragma.oj</string>
 				</dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>meta.toc-list.pragma-mark.js.oj</string>
+					<string>meta.toc-list.pragma-mark.oj</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^\s*(//#\s*(pragma\s+mark)\s+(.*))</string>
+			<string>^\s*(\/\/#\s*(pragma\s+mark)\s+(.*))</string>
 			<key>name</key>
 			<string>meta.section</string>
+		</dict>
+		<key>properties</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>((@)property)\s*(\()</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.property.oj</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.keyword.oj</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.scope.begin.oj</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(\))</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.scope.end.oj</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.property-with-attributes.oj</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>match</key>
+							<string>\b(getter|setter|readonly|readwrite|assign|retain|copy|nonatomic|strong|weak)\b</string>
+							<key>name</key>
+							<string>keyword.other.property.attribute</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.property.oj</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.keyword.oj</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>((@)property)\b</string>
+					<key>name</key>
+					<string>meta.property.oj</string>
+				</dict>
+			</array>
+		</dict>
+		<key>property_directive</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.keyword.oj</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(@)(dynamic|synthesize)\b</string>
+			<key>name</key>
+			<string>keyword.other.property.directive.oj</string>
 		</dict>
 		<key>special_variables</key>
 		<dict>
@@ -507,9 +591,15 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b(self|super)\b</string>
+					<string>\b(self)\b</string>
 					<key>name</key>
-					<string>variable.language.js.oj</string>
+					<string>variable.language.self.oj</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(super)\b</string>
+					<key>name</key>
+					<string>variable.language.super.oj</string>
 				</dict>
 			</array>
 		</dict>
@@ -517,6 +607,6 @@
 	<key>scopeName</key>
 	<string>source.js.oj</string>
 	<key>uuid</key>
-	<string>58D4B98A-2110-423E-9C80-CC9E202816E7</string>
+	<string>04EBE779-56D9-4C63-B39A-E60AAB6DD44E</string>
 </dict>
 </plist>
