@@ -50,6 +50,13 @@
             ]
         },
 
+        "protocol_innards": {
+            "patterns": [
+                { "include": "#method_definition" },
+                { "include": "$base"               }
+            ]
+        },
+
         "properties": {
             "patterns": [{
                 "name": "meta.property-with-attributes.oj",
@@ -102,7 +109,7 @@
         "method_definition": {
             "name": "meta.function.oj",
             "begin": "^(-|\\+)\\s*",
-            "end": "(?=\\{|#)|;",
+            "end": "(?=\\{|#|;)|;",
             "patterns": [{
                 "name": "meta.return-type.oj",
 
@@ -235,11 +242,32 @@
 
         "patterns": [{
             "include": "#implementation_innards"
-        }],
+        }]
 
+    }, {
+        "name": "meta.protocol.oj",
+        "contentName": "meta.scope.protocol.oj",
 
+        "begin": "((@)(protocol))\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*(?::\\s*([A-Za-z][A-Za-z0-9]*))?",
+        "beginCaptures": {
+            "1": { "name": "storage.type.oj"     },
+            "4": { "name": "entity.name.type.oj" },
+            "2": { "name": "punctuation.definition.storage.type.oj" }
+        },
 
+        "end": "((@)end)\\b",
+        "endCaptures": {
+            "1": { "name": "keyword.oj" }
+        },
 
+        "patterns": [{
+            "include": "#protocol_innards"
+        }]
+    }, {
+        "name": "support.class.js",
+        "begin": "\\b((?:Array|Object)\\s*?\\<)",
+        "end":   "\\>",
+        "patterns": [{ "include": "$self" }]
     }, {
         "name": "storage.type.oj",
         "match": "\\b(BOOL|SEL|id|Class|instancetype)\\b"
@@ -248,7 +276,7 @@
         "match": "\\b(YES|NO|Nil|nil|self|super)\\b"
     }, {
         "name": "keyword.oj",
-        "match": "(@)(enum|const)\\b"
+        "match": "(@)(any|each|enum|cast|const|squeeze|optional|global|bridged|typedef|struct|required)\\b"
     }, {
         "name": "storage.type.oj",
         "match": "(@)(class)\\b",
@@ -283,7 +311,7 @@
     }, {
         "include": "#bracketed_content"
     }, {
-        "include": "source.js"
+        "include": "source.oj-js-base"
     }, {
         "include": "#ivar"
     }]

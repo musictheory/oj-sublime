@@ -59,6 +59,64 @@
 			</array>
 		</dict>
 		<dict>
+			<key>begin</key>
+			<string>((@)(protocol))\s+([A-Za-z_][A-Za-z0-9_]*)\s*(?::\s*([A-Za-z][A-Za-z0-9]*))?</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.oj</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.storage.type.oj</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.type.oj</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.scope.protocol.oj</string>
+			<key>end</key>
+			<string>((@)end)\b</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.oj</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.protocol.oj</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#protocol_innards</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\b((?:Array|Object)\s*?\&lt;)</string>
+			<key>end</key>
+			<string>\&gt;</string>
+			<key>name</key>
+			<string>support.class.js</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
 			<key>match</key>
 			<string>\b(BOOL|SEL|id|Class|instancetype)\b</string>
 			<key>name</key>
@@ -72,7 +130,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(@)(enum|const)\b</string>
+			<string>(@)(any|each|enum|cast|const|squeeze|optional|global|bridged|typedef|struct|required)\b</string>
 			<key>name</key>
 			<string>keyword.oj</string>
 		</dict>
@@ -153,7 +211,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>source.js</string>
+			<string>source.oj-js-base</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -354,7 +412,7 @@
 			<key>begin</key>
 			<string>^(-|\+)\s*</string>
 			<key>end</key>
-			<string>(?=\{|#)|;</string>
+			<string>(?=\{|#|;)|;</string>
 			<key>name</key>
 			<string>meta.function.oj</string>
 			<key>patterns</key>
@@ -584,6 +642,20 @@
 			<string>(@)(dynamic|synthesize)\b</string>
 			<key>name</key>
 			<string>keyword.other.property.directive.oj</string>
+		</dict>
+		<key>protocol_innards</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#method_definition</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$base</string>
+				</dict>
+			</array>
 		</dict>
 		<key>special_variables</key>
 		<dict>
